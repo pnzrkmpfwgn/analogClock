@@ -24,12 +24,13 @@ function Clock() {
       return d;
     });
     setDegreeHand2((d) => {
-      d = date.getHours() * 15;
+      d = 0.5 * (60 * date.getHours() + date.getMinutes());
       return d;
     });
   }, []);
 
   useSetInterval(() => {
+    console.log(degreeHand2);
     setDegreeNeedle((d) => d + 6);
     setDegreeHand1((d) => {
       if (date.getSeconds() === 59) {
@@ -38,8 +39,8 @@ function Clock() {
       return d;
     });
     setDegreeHand2((d) => {
-      if (date.getMinutes() === 0) {
-        d = d + 6;
+      if (date.getSeconds() === 59) {
+        d = d + 0.5;
       }
       return d;
     });
